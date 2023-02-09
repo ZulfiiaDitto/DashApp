@@ -73,61 +73,31 @@ sidebar =html.Div(
 content = html.Div(id = "content_page", children= [])
 
 ######################## about page ######################
-about = [dbc.Row
-              (
-                     [
-                     dbc.Col(dbc.Button(
-                                   "About dataset",
-                                   id="collapse-button-dataset",
-                                   className="mb-3",
-                                   color="info", 
-                                   n_clicks=0, 
-                                   ), style = {
-                                          "margin": "auto",
-                                          "padding": "10px",
-                                          "padding-left" : "250px", 
-                                           "padding-top" : "150px",
-                                          }, className='six columns'),
-                     
-                     dbc.Col(dbc.Button(
-                                          "About the creator",
-                                          id = "collapse-button-creator",
-                                          className='mb-3',
-                                          color='info', 
-                                          n_clicks= 0
-                                          ),style = {
-                                          "margin": "auto",
-                                          "padding": "10px",
-                                          "padding-left" : "150px", 
-                                          "padding-top" : "150px",
-                                          'margin': "auto"
-                                          },className='six columns')
-                     ]
-              ),
-       dbc.Row([dbc.Col(dbc.Collapse(dbc.Card(dbc.CardBody(
+about = [
+       dbc.Row([dbc.Col(dbc.Card(dbc.CardBody(
               [html.P("The analysis utilized a public dataset of the number of deaths in the USA from different causes. The dataset includes three years from 2019 intill 2021, with granularity by state. The link bellow navigates you to the dataset website.",className="card-text"),
               dbc.CardLink("External link to dataset", href="https://catalog.data.gov/dataset/weekly-counts-of-deaths-by-state-and-select-causes-2019-2020")]
-              )),
+              ),
                                    id="collapse",
-                                   is_open=False,style={"width": "18rem"}),style ={
-                                          "padding": "10px",
+                                   ),style ={
+                                          "padding-top": "210px",
                                           "padding-left" : "180px",}),
-              dbc.Col(dbc.Collapse(dbc.Card(dbc.CardBody(
+              dbc.Col(dbc.Card(dbc.CardBody(
               [html.P("This dashboard had been created by Zulfiia Ditto. You can find my personal info in link bellow",className="card-text"),
               dbc.CardLink("External link to personal info", href="https://www.linkedin.com/in/zulfiia-ditto-ph-d-088681a9/")]
-              )),
+              ),
                                    id="collapse-creator",
-                                   is_open=False,style={"width": "18rem"}),style ={
-                                          "padding": "10px",
+                                   ),style ={
+                                          "padding-top": "210px",
                                           "padding-left" : "180px",})
               ])
        ]
 
-@app.callback(
-    Output("collapse", "is_open"),
-    [Input("collapse-button-dataset", "n_clicks")],
-    [State("collapse", "is_open")],
-)
+# @app.callback(
+#     Output("collapse", "is_open"),
+#     [Input("collapse-button-dataset", "n_clicks")],
+#     [State("collapse", "is_open")],
+# )
 def toggle_collapse(n, is_open):
     if n:
         return not is_open
